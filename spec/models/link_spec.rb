@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Link, type: :model do
    link = Link.new(url: "http://turing.io", title: "Turing")
 
-   # validates the presence of email and password
+   # validates the presence of url and title
    it { should validate_presence_of :url }
    it { should validate_presence_of :title }
 
