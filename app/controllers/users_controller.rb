@@ -7,12 +7,14 @@ class UsersController < ApplicationController
     user = User.new(user_params)
     if user.save
       session[:user_id] = user.id
-      redirect_to :root
+      redirect_to :links
     else
-      flash.now[:danger] =  @user.errors.full_messages.join(", ")
-      redirect_to :signup
+      flash.now[:danger] = @user.errors.full_messages.join(", ")
+      render :new
     end
   end
+
+  private
 
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation)
