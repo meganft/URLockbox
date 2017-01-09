@@ -1,5 +1,7 @@
 class LinksController < ApplicationController
   before_action :authenticate
+  skip_before_action :verify_authenticity_token
+
 
   def index
     @links = current_user.links.all
