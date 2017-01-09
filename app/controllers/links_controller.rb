@@ -17,7 +17,7 @@ class LinksController < ApplicationController
     if @link.update(link_params)
       redirect_to links_path
     else
-      flash[:danger] = @link.errors.to_a
+      flash[:danger] = @link.errors.full_messages.join(", ")
       render :edit
     end
   end
