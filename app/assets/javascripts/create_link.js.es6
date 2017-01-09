@@ -10,8 +10,6 @@ $(document).ready(function(){
 function createLink (event){
   event.preventDefault();
 
-  console.log("win")
-
   var link = getLinkData();
 
   $.post("/api/v1/links", link)
@@ -29,17 +27,17 @@ function getLinkData() {
 
 function renderLink(link){
   $("#links-list").append( linkHTML(link) )
-  // clearLink();
+  $(`*[data-id=${link.id}]`).find('.edit-link').on('click', editLink )
 }
 
 function linkHTML(link) {
 
-    return `<div class='link' data-userId='${link.user_id}' data-id='${link.id}' id="link-${link.id}">
-              <p class='link-title'>Title: ${ link.title }</p>
+    return `<div class='link' data-userId='${link.user_id}'data-id='${link.id}' id="link-${link.id}">
+              <p class='link-title'>Title: ${ link.title }</p>  
               <p class='link-url'>URL: ${ link.url }</p>
 
               <p class="link_read">
-                Read? ${ link.read }
+                Read?: ${ link.read }
               </p>
               <p class="link_buttons">
                 <button class="mark-read">Mark as Read</button>
