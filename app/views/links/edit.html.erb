@@ -1,3 +1,5 @@
+<h1>Edit Link Information</h1>
+
 <form id="edit-link" method='POST' action='/links/<%= @link.id %>'>
   <input type="hidden" name="_method" value="PUT">
 
@@ -7,5 +9,5 @@
   <label>Title</label>
   <input id="link-title" name="link[title]" value= <%= @link.title %>>
 
-  <input type="submit" value="Edit Link">
+  <input type="submit" value="Save">
 </form>
