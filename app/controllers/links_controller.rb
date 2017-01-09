@@ -1,6 +1,5 @@
 class LinksController < ApplicationController
   before_action :authenticate
-  skip_before_filter :require_login
 
   def index
     @links = current_user.links.all
