@@ -22,6 +22,10 @@ gem 'vcr', group: :test
 gem 'webmock', group: :test
 gem 'selenium-webdriver', group: :test
 
+gem 'bootstrap-sass'
+gem 'twitter-bootstrap-rails'
+
+gem 'validate_url'
 # gem 'unicorn'
 
 # gem 'capistrano-rails', group: :development
