@@ -2,19 +2,20 @@ var $newLinkTitle, $newLinkUrl;
 
 $(document).ready(function(){
 
-// this function will be trigged when read button is clicked
-  function updateLinkOnRead(event) {
-    $('#link-' + this).addClass('read')
+
+  function updateLinkOnRead(e) {
+    var targetLinkId = '#link-' + String(e)
+    debugger;
+    var $target = $(targetLinkId)
+    $target.addClass('read')
   }
 
 
-// this function will be trigged when unread button is clicked
-  function updateLinkOnUnread(event) {
-    $('#link-' + this).removeClass('read')
+  function updateLinkToUnread(event) {
+    var targetLinkId = '#link-' + String(e)
   }
 
 
-  // will perform this operation when read is clicked
   $('#links-list').on('click', 'button.mark-read', function(){
     var $this = $(this);
     var linkId = $this.parents('.link').data('id');
@@ -23,11 +24,12 @@ $(document).ready(function(){
       url: '/api/v1/links/' + linkId,
       method: 'PATCH',
       data: {read: true}
-    }).then(updateLinkOnRead.bind(linkId));
+    }).then( updateLinkOnRead.bind(this, linkId) );
   })
 
 
-// will perform this operation when unread is clicked
+
+
   $('#links-list').on('click', 'button.mark-unread', function(){
     var $this = $(this);
     var linkId = $this.parents('.link').data('id');
@@ -36,6 +38,6 @@ $(document).ready(function(){
       url: '/api/v1/links/' + linkId,
       method: 'PATCH',
       data: {read: false}
-    }).then(updateLinkOnUnread);
+    }).then( updateLinkToUnread );
   })
 })
