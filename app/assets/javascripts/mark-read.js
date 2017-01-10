@@ -1,18 +1,22 @@
 var $newLinkTitle, $newLinkUrl;
 
 $(document).ready(function(){
-  function updateLinkToRead(event) {
+
+
+  function updateLinkOnRead(e) {
     $('#link-' + this).addClass('read')
     var button = $('#link-' + this).find('.mark-read')
+
     button.removeClass('mark-read')
     button.addClass('mark-unread')
     button.html("Mark Unread")
     button.parent().parent().find('.link_read').text("Read?: true")
   }
 
-  function updateLinkToUnread(event) {
+  function updateLinkOnUnread(e) {
     $('#link-' + this).removeClass('read')
     var button = $('#link-' + this).find('.mark-unread')
+
     button.removeClass('mark-unread')
     button.addClass('mark-read')
     button.html("Mark as Read")
@@ -27,7 +31,7 @@ $(document).ready(function(){
       url: '/api/v1/links/' + linkId,
       method: 'PATCH',
       data: {read: true}
-    }).then(updateLinkToRead.bind(linkId));
+    }).then(updateLinkOnRead.bind(linkId));
   })
 
   $('#links-list').on('click', 'button.mark-unread', function(){
@@ -38,6 +42,6 @@ $(document).ready(function(){
       url: '/api/v1/links/' + linkId,
       method: 'PATCH',
       data: {read: false}
-    }).then(updateLinkToUnread.bind(linkId));
+    }).then(updateLinkOnUnread.bind(linkId));
   })
 })
