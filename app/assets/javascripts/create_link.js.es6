@@ -1,43 +1,58 @@
 var $newLinkTitle, $newLinkUrl;
 
 $(document).ready(function(){
+  $newLinkTitle = $("#link-title");
+  $newLinkUrl  = $("#link-url");
 
-
-  function updateLinkOnRead(e) {
-    var targetLinkId = '#link-' + String(e)
-    debugger;
-    var $target = $(targetLinkId)
-    $target.addClass('read')
-  }
-
-
-  function updateLinkToUnread(event) {
-    var targetLinkId = '#link-' + String(e)
-  }
-
-
-  $('#links-list').on('click', 'button.mark-read', function(){
-    var $this = $(this);
-    var linkId = $this.parents('.link').data('id');
-
-    $.ajax({
-      url: '/api/v1/links/' + linkId,
-      method: 'PATCH',
-      data: {read: true}
-    }).then( updateLinkOnRead.bind(this, linkId) );
-  })
-
-
-
-
-  $('#links-list').on('click', 'button.mark-unread', function(){
-    var $this = $(this);
-    var linkId = $this.parents('.link').data('id');
-
-    $.ajax({
-      url: '/api/v1/links/' + linkId,
-      method: 'PATCH',
-      data: {read: false}
-    }).then( updateLinkToUnread );
-  })
+  $("#new-link").on('submit', createLink);
 })
+
+function createLink (event){
+  event.preventDefault();
+
+  var link = getLinkData();
+
+  $.post("/api/v1/links", link)
+   .then( renderLink )
+   .fail( displayFailure )
+ }
+
+function getLinkData() {
+ return {
+   title: $newLinkTitle.val(),
+   url: $newLinkUrl.val(),
+   user_id: $('a').attr('id')
+ }
+}
+
+function renderLink(link){
+  $("#links-list").append( linkHTML(link) )
+
+  // clearLink();
+}
+
+function linkHTML(link) {
+
+    return `<div class='link' data-userid='${link.user_id}'data-id='${link.id}' id="link-${link.id}">
+              <p class='link-title'>Title: ${ link.title }</p>
+              <p class='link-url'>URL: ${ link.url }</p>
+
+              <p class="link_read">
+                Read?: ${ link.read }
+              </p>
+              <p class="link_buttons">
+                <button class="mark-read">Mark as Read</button>
+                <button class='edit-link'>Edit</button>
+                <button class='delete-link'>Delete</button>
+              </p>
+            </div>`
+}
+
+function clearLink() {
+  $newLinkTitle.val("");
+  $newLinkUrl.val("");
+}
+
+function displayFailure(failureData){
+  $('#warning').html("FAILED attempt to create new Link: " + failureData.responseText);
+}
