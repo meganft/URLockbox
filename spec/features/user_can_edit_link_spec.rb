@@ -45,10 +45,8 @@ RSpec.describe "User can edit created links", :js => :true do
 
     click_button "Save"
 
-    save_and_open_page
-
     expect(page).to have_content("Url is not a valid URL")
-    expect(current_path).to eq "/links/#{link.id}"
+    expect(current_path).to eq "/links/#{link.id}/edit"
   end
 
 end
