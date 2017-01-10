@@ -1,20 +1,23 @@
 var $newLinkTitle, $newLinkUrl;
 
 $(document).ready(function(){
-
-
-  function updateLinkOnRead(e) {
-    var targetLinkId = '#link-' + String(e)
-    debugger;
-    var $target = $(targetLinkId)
-    $target.addClass('read')
+  function updateLinkToRead(event) {
+    $('#link-' + this).addClass('read')
+    var button = $('#link-' + this).find('.mark-read')
+    button.removeClass('mark-read')
+    button.addClass('mark-unread')
+    button.html("Mark Unread")
+    button.parent().parent().find('.link_read').text("Read?: true")
   }
-
 
   function updateLinkToUnread(event) {
-    var targetLinkId = '#link-' + String(e)
+    $('#link-' + this).removeClass('read')
+    var button = $('#link-' + this).find('.mark-unread')
+    button.removeClass('mark-unread')
+    button.addClass('mark-read')
+    button.html("Mark as Read")
+    button.parent().parent().find('.link_read').text("Read?: false")
   }
-
 
   $('#links-list').on('click', 'button.mark-read', function(){
     var $this = $(this);
@@ -24,11 +27,8 @@ $(document).ready(function(){
       url: '/api/v1/links/' + linkId,
       method: 'PATCH',
       data: {read: true}
-    }).then( updateLinkOnRead.bind(this, linkId) );
+    }).then(updateLinkToRead.bind(linkId));
   })
-
-
-
 
   $('#links-list').on('click', 'button.mark-unread', function(){
     var $this = $(this);
@@ -38,6 +38,6 @@ $(document).ready(function(){
       url: '/api/v1/links/' + linkId,
       method: 'PATCH',
       data: {read: false}
-    }).then( updateLinkToUnread );
+    }).then(updateLinkToUnread.bind(linkId));
   })
 })
