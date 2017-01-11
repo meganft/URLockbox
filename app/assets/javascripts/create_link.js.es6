@@ -33,7 +33,7 @@ function renderLink(link){
 
 function linkHTML(link) {
 
-    return `<div class='link' data-userid='${link.user_id}'data-id='${link.id}' id="link-${link.id}">
+    return `<div class='link' data-userId='${link.user_id}'data-id='${link.id}' id="link-${link.id}">
               <p class='link-title'>Title: ${ link.title }</p>
               <p class='link-url'>URL: ${ link.url }</p>
 
@@ -43,7 +43,6 @@ function linkHTML(link) {
               <p class="link_buttons">
                 <button class="mark-read">Mark as Read</button>
                 <button class='edit-link'>Edit</button>
-                <button class='delete-link'>Delete</button>
               </p>
             </div>`
 }
