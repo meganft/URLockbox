@@ -3,16 +3,18 @@
 }
 
 .link {
-  border: 1px solid black;
+  border: 2px solid black;
   border-radius: 30px;
-  padding: 5px;
+  margin: 5px;
+  padding: 10px;
+  padding-left: 1px;
+  padding-right: 1px;
   text-align: center;
-  width: 15%;
+  width: 100%;
 }
 
 .read {
    text-decoration: line-through;
-    color: red;
 }
 
 .hide {
