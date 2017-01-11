@@ -8,18 +8,18 @@
     <input type="submit" value="Add Link">
   </form>
 
-
   <h2>Filters</h2>
   <label>By Text:</label>
-  <input id='filter-text' type="text" name="filter-text" value="">
-  <button type="button" id='filter-unread' name="filter-unread">Only Unread</button>
-  <button type="button" id='filter-read' name="filter-read">Only Read</button> <br> <br>
+  <input id="filter-text" type="text" name="filter-text" value="">
+  <button type="button" id="filter-unread" name="filter-unread">Filter Unread</button>
+  <button type="button" id="filter-read" name="filter-read">Filter Read</button>
+
+
+  <div id="warning"></div>
 
   <div id="links-list">
 
 
-  <div id="warning">
-  </div>
 
   <% @links.each do |link| %>
     <div class='link' data-userId='<%= link.user_id %>' data-id='<%= link.id %>' id="link-<%= link.id %>">
