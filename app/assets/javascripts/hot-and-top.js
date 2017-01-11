@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  $.get("http://localhost:2000/api/v1/hotreads").then(markHotReads)
+  $.get("https://sheltered-ocean-18171.herokuapp.com/api/v1/hotreads").then(markHotReads)
 });
 
 function markHotReads(hotReads) {
