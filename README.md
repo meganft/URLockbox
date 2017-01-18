@@ -2,5 +2,4 @@
 
 <p> URLockbox is a small application for tossing various forms of inspiration for later review. It's not unlike Delicious or Pinboard. It is the spiritual successor of Ideabo.</p>
 
-The URLockbox is a starter app for the mid-module assessment for backend engineering module4 at TuringSchool of Software and Design.
-# temp-mid-mod-boilerplate
+<p>The idea behind is to allow authenticated users to login, write down their titles and links, so it can be used in the future as a reference.</p>
