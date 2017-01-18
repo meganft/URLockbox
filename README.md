@@ -58,3 +58,41 @@
   2.  I can edit the title and/or the url of the link.
 
   3.  I cannot change the url to an invalid url. Render error message in case this scenario takes place.
+  
+### Section 4 - Implementing a Service
+
+1. #### Hot Reads App
+
+    I have build a second application called Hot Reads, that fulfills the following requirements.
+    
+    1.  When a link in the URLockbox is marked as "read", the link's info is automatically sent to Hot Reads app.
+
+    2. Hot Reads create a record of the "read" links.
+
+### Section 5 - Client-Side
+
+1. #### Client-Side Features:
+
+    As an authenticated user, I can do the following in the URLockbox index without reloading the page:
+
+    1. Mark a link as read or unread
+      - Next to each unread link I should see an option to "Mark as Read".
+      - Clicking this should visibly change the `read` status to true, and the change should persist.
+      - Next to each read link I should see an option to "Mark as Unread".
+      - Clicking this should change the `read` status to false, and the change should persist.
+      
+    2. Read links will be stylistically differentiated from unread links. I have decided to strike through.
+   
+    3. Click a button or link to filter the list by "read" and "unread" status
+   
+    4. Filter the list of links by title name within the search box.
+    
+    5. In addition, we have used client-side request and a bit of JavaScript to do the following:</center>
+
+        1. If a visible link is in Hot Read's current top-10, mark it as "hot" (in red color)
+        2. If a visible link is currently number one in the top-10, mark it as "top link" (in yellow color)
+        
+Feel free to challenge yourself and recreate the application.
+
+#### Raphael Barbo
+
